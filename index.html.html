@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для тебя ❤️</title>
+    <!-- Подключаем красивый шрифт -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #ffdde1 0%, #f9c9d2 100%);
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* выравнивание по центру */
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Анимированный фон с сердечками */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart-float {
+            position: absolute;
+            color: rgba(255, 80, 120, 0.15);
+            font-size: 24px;
+            animation: float 8s infinite linear;
+            user-select: none;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-20vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Основной контент поверх фона */
+        .content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(4px);
+            border-radius: 60px 60px 30px 30px;
+            padding: 40px 20px;
+            box-shadow: 0 20px 40px rgba(180, 60, 100, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 5rem;
+            font-weight: normal;
+            color: #b03a5e;
+            text-shadow: 0 4px 10px rgba(255, 200, 220, 0.8);
+            margin-bottom: 30px;
+            animation: glowPulse 3s infinite alternate;
+            letter-spacing: 2px;
+        }
+
+        @keyframes glowPulse {
+            from { text-shadow: 0 4px 15px rgba(255, 120, 160, 0.4); }
+            to { text-shadow: 0 4px 30px rgba(255, 80, 120, 0.9); }
+        }
+
+        .photo-frame {
+            background: white;
+            padding: 15px 15px 35px 15px; /* снизу больше места для "подписи" */
+            border-radius: 30px;
+            box-shadow: 0 30px 40px rgba(150, 40, 70, 0.25);
+            transform: rotate(1deg);
+            transition: transform 0.4s ease;
+            max-width: 500px;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .photo-frame:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .photo {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .photo-caption {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.8rem;
+            color: #b03a5e;
+            text-align: center;
+            margin-top: 15px;
+            opacity: 0.8;
+        }
+
+        .heart-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 30px 0 10px;
+        }
+
+        .big-heart {
+            font-size: 8rem;
+            line-height: 1;
+            filter: drop-shadow(0 10px 15px rgba(200, 50, 80, 0.5));
+            animation: heartbeat 1.2s infinite ease-in-out;
+            transform-origin: center;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.2); }
+            35% { transform: scale(1.1); }
+            45% { transform: scale(1.3); }
+            55% { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+
+        /* маленькие декорации */
+        .small-note {
+            font-size: 1.2rem;
+            color: #a6576e;
+            background: rgba(255,255,240,0.6);
+            padding: 8px 20px;
+            border-radius: 40px;
+            backdrop-filter: blur(2px);
+            margin-top: 25px;
+            border: 1px solid white;
+        }
+
+        /* адаптация для мобильных */
+        @media (max-width: 600px) {
+            h1 { font-size: 3.2rem; }
+            .big-heart { font-size: 5rem; }
+            .photo-frame { padding: 10px 10px 25px; }
+            .photo-caption { font-size: 1.4rem; }
+            .content { padding: 25px 15px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Плавающие сердечки на фоне -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+
+    <div class="content">
+        <h1>Я тебя люблю</h1>
+
+        <div class="heart-container">
+            <span class="big-heart">❤️</span>
+            <div class="photo-frame">
+                <!-- ЗДЕСЬ ВСТАВЬТЕ ИМЯ ВАШЕГО ФАЙЛА, например: dNd-A6WcG-... .jpg -->
+                <img class="photo" src="photo_sait.jpg" alt="Мы">
+                <div class="photo-caption"></div>
+            </div>
+            <span class="big-heart">❤️</span>
+        </div>
+
+        <div class="small-note">
+            ✨ Ты — самое прекрасное, что со мной случалось ✨
+        </div>
+    </div>
+
+    <script>
+        // Генерация плавающих сердечек
+        function createFloatingHeart() {
+            const heart = document.createElement('span');
+            heart.classList.add('heart-float');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 6 + 5) + 's'; // 5-11 секунд
+            heart.style.fontSize = (Math.random() * 30 + 15) + 'px';
+            heart.style.opacity = Math.random() * 0.3 + 0.2;
+            document.getElementById('floatingHearts').appendChild(heart);
+
+            // Удаляем сердечко после окончания анимации
+            setTimeout(() => {
+                heart.remove();
+            }, 11000);
+        }
+
+        // Создаём сердечки каждые 500 мс
+        setInterval(createFloatingHeart, 500);
+    </script>
+</body>
+</html>
